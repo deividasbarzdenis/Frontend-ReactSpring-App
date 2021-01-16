@@ -7,29 +7,30 @@ import RecipeFom from "../../pages/RecipeForm/RecipeForm";
 import Recipe from "../../pages/Recipe/Recipe";
 
 const Content = () => {
+
     return (
-         <main>
-                 <Switch>
-                     <Route exact path="/home">
-                         <Home />
-                     </Route>
-                     <Route path="/recipe/form">
-                         <RecipeFom/>
-                     </Route>
-                     <Route exact path="/recipes">
-                         <Recipes/>
-                     </Route>
-                     <Route path="/recipe">
-                         <Recipe/>
-                     </Route>
-                     <Route path="/login">
-                         <Login />
-                     </Route>
-                     <Route path="/signup">
-                         <SignUp />
-                     </Route>
-                 </Switch>
-         </main>
+        <main>
+            <Switch>
+                <Route exact path="/home">
+                    <Home/>
+                </Route>
+                <Route path="/recipe/form">
+                    <RecipeFom/>
+                </Route>
+                <Route exact path="/recipes">
+                    <Recipes/>
+                </Route>
+                <Route path="/recipe">
+                    <Recipe/>
+                </Route>
+                <Route path="/login">
+                    <Login/>
+                </Route>
+                <Route path="/signup">
+                    <SignUp/>
+                </Route>
+            </Switch>
+        </main>
     );
 }
 
