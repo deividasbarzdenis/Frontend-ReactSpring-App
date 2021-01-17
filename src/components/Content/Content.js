@@ -6,6 +6,7 @@ import Recipes from "../../pages/Recipes/Recipes";
 import RecipeFom from "../../pages/RecipeForm/RecipeForm";
 import Recipe from "../../pages/Recipe/Recipe";
 import {User} from "../../pages/User/User";
+import About from "../../pages/About/About";
 
 const Content = () => {
 
@@ -32,6 +33,9 @@ const Content = () => {
                 </Route>
                 <Route path="/users">
                     <User/>
+                </Route>
+                <Route path="/about">
+                    <About/>
                 </Route>
             </Switch>
         </main>

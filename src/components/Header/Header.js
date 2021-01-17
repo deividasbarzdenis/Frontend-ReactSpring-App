@@ -24,7 +24,7 @@ const Header = () => {
                     <li><NavLink to="/recipe/form">Add Recipe</NavLink></li>
                     <li><NavLink to="/recipes">Recipes</NavLink></li>
                     <li><NavLink to="/users">Users</NavLink></li>
-                    <li><NavLink to="/about">About</NavLink></li> {/*add to Content Route*/}
+                    <li><NavLink to="/about">About</NavLink></li>
                     <li><NavLink to="/login">Login</NavLink></li>
                     <li><NavLink to="/signup">Sign Up</NavLink></li>
                 </ul>
