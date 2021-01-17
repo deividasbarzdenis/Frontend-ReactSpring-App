@@ -5,6 +5,7 @@ import SignUp from "../../pages/SignUp/SignUp";
 import Recipes from "../../pages/Recipes/Recipes";
 import RecipeFom from "../../pages/RecipeForm/RecipeForm";
 import Recipe from "../../pages/Recipe/Recipe";
+import {User} from "../../pages/User/User";
 
 const Content = () => {
 
@@ -28,6 +29,9 @@ const Content = () => {
                 </Route>
                 <Route path="/signup">
                     <SignUp/>
+                </Route>
+                <Route path="/users">
+                    <User/>
                 </Route>
             </Switch>
         </main>

@@ -1,5 +1,8 @@
 import {useEffect, useState} from "react";
 import {deleteUser, fetchUsers} from "../../api/usersApi";
+import Container from "@material-ui/core/Container";
+
+import UsersTable from "./UsersTable";
 
 export const User = () => {
     const [users, setUsers] = useState([])
@@ -31,8 +34,20 @@ export const User = () => {
             })
     }
     return (
-        <div>
-            <h1>Form</h1>
-        </div>
+        <Container component="main" maxWidth="xs">
+            <h1 align="center"> All Users</h1>
+            {
+                isLoading ?
+                    (
+                        <div className="spinner-border" role="status">
+                        </div>
+                    ) :
+                    <UsersTable
+                        users={users}
+                        handleDeleteClick={handleDeleteClick}
+                    />
+
+            }
+        </Container>
     )
 };
