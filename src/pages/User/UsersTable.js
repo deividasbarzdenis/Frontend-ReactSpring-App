@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 
 const UsersTable = ({users, handleDeleteClick, }) => {
     return (
-         <Container>
+         <Container >
              <TableContainer>
                  <Table >
                      <TableHead>
@@ -21,6 +21,7 @@ const UsersTable = ({users, handleDeleteClick, }) => {
                          {
                              users.map(user => (
                                  <TableRow key={user.id}>
+                                     <TableCell>{user.id}</TableCell>
                                      <TableCell>{user.username}</TableCell>
                                      <TableCell>{user.lastName}</TableCell>
                                      <TableCell>{user.email}</TableCell>
