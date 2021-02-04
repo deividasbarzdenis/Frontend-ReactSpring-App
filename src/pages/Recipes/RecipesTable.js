@@ -20,9 +20,9 @@ const RecipesTable = ({recipes, handleDeleteClick}) => {
                         {
                             recipes.map(rec => (
                                 <TableRow key={rec.id}>
-                                    <TableCell>{rec.recipeTitle}</TableCell>
-                                    <TableCell>{rec.description}</TableCell>
-                                    <TableCell>{rec.user}</TableCell>
+                                    <TableCell>{rec.id}</TableCell>
+                                    <TableCell>{rec.recipeDescription}</TableCell>
+                                    <TableCell>{rec.recipeNotes}</TableCell>
                                     <TableCell>
                                         <Button
                                             variant="outlined"

@@ -1,4 +1,4 @@
-export  default (props) => {
+export  default (props) => (
     <div style={{margin: '1rem 0'}}>
         <h3 style={{fontFamily: 'monospace'}}/>
         <pre
@@ -11,7 +11,7 @@ export  default (props) => {
                 {JSON.stringify(props, null, 2)}
         </pre>
     </div>
-}
+)
 
 
 

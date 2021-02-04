@@ -7,6 +7,7 @@ import {Submit} from "./stepForm/Submit";
 import {Review} from "./stepForm/Review";
 
 const defaultData = {
+    //--->MAIN INFORMATION<---//
     recipeTitle: '',
     prepTime: 0,
     cookTime: 0,
@@ -18,11 +19,16 @@ const defaultData = {
     description: '',
     difficulty: '',
     //--------------
+    //--->INGREDIENTS<---//
     ingredientDescription: '',
     amount: 0,
     uom: '',
     //------------------
+    //--->Notes<---//
     recipeNotes: '',
+    //--->PICTURE<---//
+
+    //--->SUBMIT<---//
 }
 const steps = [
     {id: 'title'},

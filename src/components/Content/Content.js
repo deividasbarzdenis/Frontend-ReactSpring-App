@@ -3,10 +3,11 @@ import Home from "../../pages/Home/Home";
 import Login from "../../pages/Login/Login";
 import SignUp from "../../pages/SignUp/SignUp";
 import Recipes from "../../pages/Recipes/Recipes";
-import RecipeFom from "../../pages/RecipeForm/RecipeForm";
 import Recipe from "../../pages/Recipe/Recipe";
 import {User} from "../../pages/User/User";
 import About from "../../pages/About/About";
+import UserProfile from "../../pages/User/UserProfile";
+import NewRecipeForm from "../../pages/RecipeForm/NewRecipeForm";
 
 const Content = () => {
 
@@ -17,7 +18,7 @@ const Content = () => {
                     <Home/>
                 </Route>
                 <Route path="/recipe/form">
-                    <RecipeFom/>
+                    <NewRecipeForm/>
                 </Route>
                 <Route exact path="/recipes">
                     <Recipes/>
@@ -31,8 +32,11 @@ const Content = () => {
                 <Route path="/signup">
                     <SignUp/>
                 </Route>
-                <Route path="/users">
+                <Route exact path="/users">
                     <User/>
+                </Route>
+                <Route path="/users/:id">
+                    <UserProfile/>
                 </Route>
                 <Route path="/about">
                     <About/>

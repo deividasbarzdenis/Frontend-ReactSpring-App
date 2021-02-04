@@ -1,6 +1,7 @@
 import Container from "@material-ui/core/Container";
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
+import {Link} from "react-router-dom";
 
 const UsersTable = ({users, handleDeleteClick, }) => {
     return (
@@ -22,7 +23,7 @@ const UsersTable = ({users, handleDeleteClick, }) => {
                              users.map(user => (
                                  <TableRow key={user.id}>
                                      <TableCell>{user.id}</TableCell>
-                                     <TableCell>{user.username}</TableCell>
+                                     <TableCell><Link to={`/users/${user.id}`}>{user.username}</Link></TableCell>
                                      <TableCell>{user.lastName}</TableCell>
                                      <TableCell>{user.email}</TableCell>
                                      <TableCell>{user.role}</TableCell>
