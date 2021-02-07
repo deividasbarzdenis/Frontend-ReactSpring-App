@@ -1,7 +1,10 @@
 import {NavLink} from "react-router-dom";
-import {AppBar, IconButton, makeStyles, Toolbar} from "@material-ui/core";
+import {AppBar, Button, IconButton, makeStyles, Toolbar} from "@material-ui/core";
 import {Home} from "@material-ui/icons";
 import {green} from "@material-ui/core/colors";
+import {removeJwt, removeUserData} from "../../store/slices/userSlice";
+import useUser from "../../hooks/useUser";
+import {useDispatch} from "react-redux";
 
 const primary = green[300];
 const useStyles = makeStyles((theme) => ({
@@ -11,6 +14,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Header = () => {
     const classes = useStyles();
+    const user = useUser()
+    const dispatch = useDispatch()
+
+    const logout = () => {
+        dispatch(removeJwt())
+        dispatch(removeUserData())
+    }
 
     return (
         <AppBar position="static" component="nav" className={classes.navbar}>
@@ -25,8 +35,19 @@ const Header = () => {
                     <li><NavLink to="/recipes">Recipes</NavLink></li>
                     <li><NavLink to="/users">Users</NavLink></li>
                     <li><NavLink to="/about">About</NavLink></li>
-                    <li><NavLink to="/login">Login</NavLink></li>
-                    <li><NavLink to="/signup">Sign Up</NavLink></li>
+                    {
+                        !!user ? (
+                            <>
+                            <li><NavLink to="/home" component={Button} onClick={logout}>Logout</NavLink></li>
+                            </>
+                        ) : (
+                            <>
+                                <li><NavLink to="/login">Login</NavLink></li>
+                                <li><NavLink to="/signup">Sign Up</NavLink></li>
+                            </>
+                        )
+                    }
+
                 </ul>
             </Toolbar>
         </AppBar>

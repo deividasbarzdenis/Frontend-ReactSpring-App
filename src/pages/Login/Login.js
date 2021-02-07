@@ -1,19 +1,13 @@
 import * as yup from 'yup';
 import {useFormik} from "formik";
-import {
-    Avatar,
-    Checkbox,
-    CssBaseline,
-    FormControlLabel,
-    Grid,
-    Link,
-    makeStyles,
-    TextField,
-    Typography
-} from "@material-ui/core";
+import {Avatar, CssBaseline, Grid, Link, makeStyles, TextField, Typography} from "@material-ui/core";
 import Container from "@material-ui/core/Container";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Button from "@material-ui/core/Button";
+import {useDispatch} from "react-redux";
+import {setJwt, setUserData} from "../../store/slices/userSlice";
+import {useHistory, useLocation} from "react-router";
+import {login} from "../../api/loginApi";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -36,29 +30,47 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const validationSchema = yup.object({
-    email: yup
-        .string('Enter your email')
-        .email('Enter a valid email')
-        .required('Email is required'),
+    username: yup
+        .string('Enter your username')
+        .min(2, 'Username should be of minimum 2 characters length')
+        .required('Username is required'),
     password: yup
         .string('Enter your password')
-        .min(8, 'Password should be of minimum 8 characters length')
+        .min(4, 'Password should be of minimum 8 characters length')
         .required('Password is required'),
 });
 
 
 const Login = () => {
     const classes = useStyles();
+    const history = useHistory()
+    const location = useLocation()
+    const dispatch = useDispatch()
+
+    const postLogin = (loginData, { setSubmitting }) => {
+        setSubmitting(true)
+
+    login(loginData)
+        .then(({data, headers: { authorization }}) => {
+            dispatch(setUserData(data))
+            dispatch(setJwt(authorization))
+
+            const { from } = location.state || {
+                from: {
+                    pathname: '/home'
+                }
+            }
+            history.push(from)
+        }).catch(e => (console.log(e)))
+}
 
     const formik = useFormik({
         initialValues: {
-            email: '',
+            username: '',
             password: '',
         },
         validationSchema: validationSchema,
-        onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
-        },
+        onSubmit: postLogin,
     });
 
     return (
@@ -75,22 +87,19 @@ const Login = () => {
                         <TextField
                             variant="outlined"
                             margin="normal"
-                            required
                             fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus
-                            value={formik.values.email}
+                            id="username"
+                            label="Username"
+                            name="username"
+                            autoComplete="username"
+                            value={formik.values.username}
                             onChange={formik.handleChange}
-                            error={formik.touched.email && Boolean(formik.errors.email)}
-                            helperText={formik.touched.email && formik.errors.email}
+                            error={formik.touched.username && Boolean(formik.errors.username)}
+                            helperText={formik.touched.username && formik.errors.username}
                         />
                         <TextField
                             variant="outlined"
                             margin="normal"
-                            required
                             fullWidth
                             name="password"
                             label="Password"
@@ -102,16 +111,13 @@ const Login = () => {
                             error={formik.touched.password && Boolean(formik.errors.password)}
                             helperText={formik.touched.password && formik.errors.password}
                         />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary"/>}
-                            label="Remember me"
-                        />
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
                             color="primary"
                             className={classes.submit}
+                            disabled={formik.isSubmitting}
                         >
                             Sign In
                         </Button>

@@ -1,0 +1,8 @@
+{
+  "common": {
+    "hello": "Welcome to our shop!"
+  },
+  "products": {
+    "totalProductsDesc": "Total products in the store: {{total}}"
+  }
+}

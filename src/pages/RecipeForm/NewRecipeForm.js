@@ -78,8 +78,8 @@ const NewRecipeForm = () => {
                 difficulty: 0,
                 ingredientDTO: [{
                     ingredientDescription: '',
-                    amount: 0,
-                    muDescription: '',
+                    amount: '',
+                    muDescription: 0,
                 }],
                 recipeNotes: '',
             }}
@@ -132,7 +132,7 @@ const NewRecipeForm = () => {
                                             id='prepTime'
                                             label='Preparation time'
                                             type="number"
-                                            value={values.difficulty}
+                                            value={values.prepTime}
                                             onChange={handleChange}
                                             onBlur={handleBlur}
                                             helperText={touched.prepTime ? errors.prepTime : ""}
@@ -171,6 +171,7 @@ const NewRecipeForm = () => {
                                     </Grid>
                                     <Grid item xs={6} sm={3}>
                                         <Field
+                                            onBlur={handleBlur}
                                             fullWidth
                                             error={touched.difficulty && Boolean(errors.difficulty)}
                                             helperText={touched.difficulty ? errors.difficulty : ""}

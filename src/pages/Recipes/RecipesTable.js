@@ -1,36 +1,47 @@
-import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
+import {makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 
+const useStyles = makeStyles((theme) => ({
+    table: {
+        minWidth: 700,
+    },
+    head: {
+        fontWeight: "bold",
+    },
+    topTable: {
+        backgroundColor: theme.palette.grey[200],
+    }
+}));
+
 const RecipesTable = ({recipes, handleDeleteClick}) => {
+    const classes = useStyles();
+
     return (
-        <Container>
-            <TableContainer>
-                <Table >
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="center">Id</TableCell>
-                            <TableCell align="center">Recipe Title</TableCell>
-                            <TableCell align="center">Category</TableCell>
-                            <TableCell align="center">Owner</TableCell>
-                            <TableCell align="center"/>
+        <Container component="main">
+            <TableContainer component={Paper}>
+                <Table className={classes.table}>
+                    <TableHead className={classes.topTable}>
+                        <TableRow >
+                            <TableCell align="center" className={classes.head}>Id</TableCell>
+                            <TableCell align="center" className={classes.head}>Recipe Title</TableCell>
+                            <TableCell align="center" className={classes.head}/>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {
                             recipes.map(rec => (
-                                <TableRow key={rec.id}>
-                                    <TableCell>{rec.id}</TableCell>
-                                    <TableCell>{rec.recipeDescription}</TableCell>
-                                    <TableCell>{rec.recipeNotes}</TableCell>
-                                    <TableCell>
+                                <TableRow key={rec.id} hover>
+                                    <TableCell align="center">{rec.id}</TableCell>
+                                    <TableCell align="center">{rec.recipeDescription}</TableCell>
+                                    <TableCell align="center">
                                         <Button
                                             variant="outlined"
                                             color="secondary"
                                             size="small"
                                             onClick={() => handleDeleteClick(rec.id)}
                                         >Delete</Button>
-                                    </TableCell>
+                                    </TableCell >
                                 </TableRow>
                             ))
                         }

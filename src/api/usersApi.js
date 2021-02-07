@@ -9,3 +9,5 @@ export const updateUser = (id) => HTTP.post(`/users/${id}`);
 export const deleteUser = (id) => HTTP.delete(`/users/${id}`);
 
 export const getUserById = (id) => HTTP.get(`/users/${id}`);
+
+

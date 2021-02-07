@@ -8,6 +8,7 @@ import {User} from "../../pages/User/User";
 import About from "../../pages/About/About";
 import UserProfile from "../../pages/User/UserProfile";
 import NewRecipeForm from "../../pages/RecipeForm/NewRecipeForm";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const Content = () => {
 
@@ -17,13 +18,16 @@ const Content = () => {
                 <Route exact path="/home">
                     <Home/>
                 </Route>
-                <Route path="/recipe/form">
+
+                <PrivateRoute path="/recipe/form" roles={['ADMIN', 'USER']}>
                     <NewRecipeForm/>
-                </Route>
-                <Route exact path="/recipes">
+                </PrivateRoute>
+
+                <PrivateRoute path="/recipes" roles={['ADMIN']}>
                     <Recipes/>
-                </Route>
-                <Route path="/recipe">
+                </PrivateRoute>
+
+                <Route exact path="/recipe/:id">
                     <Recipe/>
                 </Route>
                 <Route path="/login">
@@ -32,12 +36,15 @@ const Content = () => {
                 <Route path="/signup">
                     <SignUp/>
                 </Route>
-                <Route exact path="/users">
+
+                <PrivateRoute exact path="/users" roles={['ADMIN']}>
                     <User/>
-                </Route>
-                <Route path="/users/:id">
+                </PrivateRoute>
+
+                <PrivateRoute path="/users/:id" roles={['ADMIN', 'USER']}>
                     <UserProfile/>
-                </Route>
+                </PrivateRoute>
+
                 <Route path="/about">
                     <About/>
                 </Route>
