@@ -1,4 +1,14 @@
-import {Card, CardActions, CardContent, CardMedia, Grid, makeStyles, Typography} from "@material-ui/core";
+import {
+    Card,
+    CardActions,
+    CardContent,
+    CardMedia,
+    Collapse,
+    CssBaseline,
+    Grid,
+    makeStyles,
+    Typography
+} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import {useEffect, useState} from "react";
@@ -7,11 +17,37 @@ import clsx from 'clsx';
 import {NavLink} from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import cover from '../../assets/cover.jpg'
+import pizzas from '../../assets/pizzas.png'
+import grey from '@material-ui/core/colors/red';
+import a1 from "../../assets/img/1.jpg";
+import a2 from "../../assets/img/2.jpg";
+import a3 from "../../assets/img/3.jpg";
+import a4 from "../../assets/img/4.jpg";
+import a5 from "../../assets/img/5.jpg";
+import a6 from "../../assets/img/6.jpg";
+import a7 from "../../assets/img/7.jpg";
+import a8 from "../../assets/img/8.jpg";
+import a9 from "../../assets/img/9.jpg";
+import a10 from "../../assets/img/10.jpg";
+import a11 from "../../assets/img/11.jpg";
+
+
+const primary = grey[700];
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        minHeight: '100vh',
+        overflow: 'hidden',
+        marginLeft: '-73px',
+        minWidth: '112%',
+        backgroundImage: `url(${process.env.PUBLIC_URL + cover})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+    },
     cardGrid: {
-        paddingTop: theme.spacing(8),
-        paddingBottom: theme.spacing(8),
+        paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(2),
     },
     card: {
         height: '100%',
@@ -34,18 +70,29 @@ const useStyles = makeStyles((theme) => ({
     expandOpen: {
         transform: 'rotate(180deg)',
     },
+    mario: {
+        height: '50px',
+        weight: '50px',
+        position: 'absolute',
+        top: '-50px',
+        left: 0,
+        animation: 'drive 3s both infinite linear',
+    },
+    '@keyframes drive': {
+        'from': {transform: "translateX(-200px)"},
+        'to': {transform: "translateX(1600px)"}
+    },
 }));
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 
 const Home = () => {
     const classes = useStyles();
     const [recipes, setRecipes] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    const [expanded, setExpanded] = useState(false);
+    const [expanded, setExpanded] = useState(-1);
 
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
+    const handleExpandClick = (i) => {
+        setExpanded(expanded === i ? -1 : i);
     };
 
     useEffect(() => {
@@ -64,50 +111,86 @@ const Home = () => {
     }
 
     return (
-        <Container component="main">
-            <Container className={classes.cardGrid} maxWidth="md">
+        <Container component="main" className={classes.root}>
+            <CssBaseline/>
+            <Container className={classes.cardGrid}>
                 <Grid container spacing={4}>
-                    {recipes.map((recipe) => (
+                    {recipes.map((recipe, i) => (
                         <Grid item key={recipe.id} xs={12} sm={6} md={4}>
                             <Card className={classes.card}>
                                 <CardMedia
                                     className={classes.cardMedia}
-                                    image="https://source.unsplash.com/random"
+                                    image={pictures(recipe.id)}
                                     title="Image title"
                                 />
                                 <CardContent className={classes.cardContent}>
-                                    <Typography gutterBottom variant="h5" component="h2">
-                                        {recipe.recipeDescription}
-                                    </Typography>
-                                    <Typography>
-                                        {recipe.directions}
-                                    </Typography>
-                                </CardContent>
-                                <CardActions>
-                                    <NavLink to={`/recipe/${recipe.id}`} component={Button} size="small" color="primary">
-                                        <IconButton
-                                            className={clsx(classes.expand, {
-                                                [classes.expandOpen]: expanded,
-                                            })}
-                                            onClick={handleExpandClick}
-                                            aria-expanded={expanded}
-                                            aria-label="show more"
-                                        >
-                                            <ExpandMoreIcon />
-                                        </IconButton>
+                                    <NavLink to={`/recipe/${recipe.id}`} component={Button} size="small"
+                                             color={primary} align="center">
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            {recipe.recipeDescription}
+                                        </Typography>
                                     </NavLink>
-                                    {/*<Button size="small" color="primary">*/}
-                                    {/*    Edit*/}
-                                    {/*</Button>*/}
-                                </CardActions>
+                                </CardContent>
+                                <IconButton
+                                    className={clsx(classes.expand, {
+                                        [classes.expandOpen]: expanded,
+                                    })}
+                                    onClick={() => handleExpandClick(i)}
+                                    aria-expanded={expanded === i}
+                                    aria-label="show more"
+                                >
+                                    <ExpandMoreIcon/>
+                                </IconButton>
+                                <Collapse in={expanded === i} timeout="auto" unmountOnExit>
+                                    <CardActions>
+                                        <CardContent>
+                                            <Typography>
+                                                {recipe.directions}
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActions>
+                                </Collapse>
                             </Card>
                         </Grid>
                     ))}
                 </Grid>
             </Container>
+
+            <div className={classes.mario}>
+                <Card image={process.env.PUBLIC_URL + pizzas} className={classes.mario} alt="Pizza"/>
+            </div>
         </Container>
     );
 }
 
 export default Home;
 
+const pictures = (inx) => {
+    switch (inx) {
+        case 1:
+            return a1;
+        case 2:
+            return a2;
+        case 3:
+            return a3;
+        case 4:
+            return a4;
+        case 5:
+            return a5;
+        case 6:
+            return a6;
+        case 7:
+            return a7;
+        case 8:
+            return a8;
+        case 9:
+            return a9;
+        case 10:
+            return a10;
+        case 11:
+            return a11;
+
+        default:
+            return a1;
+    }
+}

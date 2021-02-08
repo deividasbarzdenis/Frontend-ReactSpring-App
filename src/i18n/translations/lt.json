@@ -1,8 +1,0 @@
-{
-  "common": {
-    "hello": "Sveiki atvyke i mano osom parduotuve!"
-  },
-  "products": {
-    "totalProductsDesc": "Šioje parduotuvėje yra {{total}} produktų"
-  }
-}

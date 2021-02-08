@@ -10,6 +10,11 @@ import {useHistory, useLocation} from "react-router";
 import {login} from "../../api/loginApi";
 
 const useStyles = makeStyles((theme) => ({
+    text: {
+        "& .MuiInputBase-input MuiOutlinedInput-input": {
+            borderBottom: "1px solid #fff",
+        },
+    },
     paper: {
         marginTop: theme.spacing(8),
         display: 'flex',
@@ -85,6 +90,7 @@ const Login = () => {
                 </Typography>
                     <form className={classes.form} noValidate onSubmit={formik.handleSubmit}>
                         <TextField
+                           className={classes.text}
                             variant="outlined"
                             margin="normal"
                             fullWidth
@@ -98,6 +104,7 @@ const Login = () => {
                             helperText={formik.touched.username && formik.errors.username}
                         />
                         <TextField
+                            className={classes.text}
                             variant="outlined"
                             margin="normal"
                             fullWidth

@@ -1,20 +1,24 @@
 import Container from "@material-ui/core/Container";
 import {CardMedia, makeStyles} from "@material-ui/core";
+import about from '../../assets/about.jpg';
 
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
         paddingTop: '56.25%', // 16:9
+        backgroundImage: `url(${process.env.PUBLIC_URL + about})`
     },
+    about: {
+        marginBottom: '20px',
+    }
 }));
 const About = () => {
     const classes = useStyles();
     return (
-        <Container component="main" maxWidth="sm">
+        <Container component="main" maxWidth="sm"className={classes.about}>
             <div>
                 <h3 align="center">About Recipes pages</h3>
                 <CardMedia
                     className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
                     title="Image title"
                 />
                 <div>

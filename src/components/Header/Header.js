@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Header = () => {
     const classes = useStyles();
-    const user = useUser()
+    const user = useUser() //leiadzia prisideti state is redux
     const dispatch = useDispatch()
 
     const logout = () => {
@@ -23,7 +23,7 @@ const Header = () => {
     }
 
     return (
-        <AppBar position="static" component="nav" className={classes.navbar}>
+        <AppBar position="static" component="nav" className={classes.navbar} elevation={0}>
             <Toolbar>
                 <NavLink exact to="/home">
                     <IconButton edge="start" color="inherit" aria-label="home">
@@ -33,10 +33,9 @@ const Header = () => {
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                     <li><NavLink to="/recipe/form">Add Recipe</NavLink></li>
                     <li><NavLink to="/recipes">Recipes</NavLink></li>
-                    <li><NavLink to="/users">Users</NavLink></li>
                     <li><NavLink to="/about">About</NavLink></li>
                     {
-                        !!user ? (
+                        !!user ? (//!! pavercia i boolean javascript
                             <>
                             <li><NavLink to="/home" component={Button} onClick={logout}>Logout</NavLink></li>
                             </>
@@ -47,7 +46,6 @@ const Header = () => {
                             </>
                         )
                     }
-
                 </ul>
             </Toolbar>
         </AppBar>

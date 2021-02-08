@@ -7,6 +7,14 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 
 const useStyles = makeStyles((theme) => ({
+    text: {
+        "MuiInputBase-input MuiOutlinedInput-input": {
+            borderBottom: "1px solid #fff",
+        },
+        "& .MuiInputBase-root MuiInput-root MuiInput-underline Mui-error Mui-error MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl": {
+            borderBottom: "1px solid #fff",
+        }
+    },
     paper: {
         marginTop: theme.spacing(8),
         display: 'flex',
@@ -38,8 +46,9 @@ const validationSchema = yup.object().shape({
         .min(3, "Too Short!")
         .max(20, "Too Long!")
         .required("The last name is required"),
-    email: yup.string()
-        .email("Invalid email")
+    name: yup.string()
+        .min(3, "Too Short!")
+        .max(20, "Too Long!")
         .required("Email is required"),
     password: yup.string()
         .required("Please enter your password")
@@ -73,6 +82,7 @@ const Signup = () => {
             initialValues={{
                 username: '',
                 lastname: '',
+                name: '',
                 password: '',
                 confirmPassword: '',
             }}
@@ -104,8 +114,9 @@ const Signup = () => {
                                         <Grid container spacing={2}>
                                             <Grid item xs={12} sm={6}>
                                                 <TextField
+                                                    className={classes.text}
                                                     id='username'
-                                                    label='First Name'
+                                                    label='User Name'
                                                     value={values.username}
                                                     onChange={handleChange}
                                                     onBlur={handleBlur}
@@ -114,12 +125,12 @@ const Signup = () => {
                                                     margin="dense"
                                                     variant="outlined"
                                                     fullWidth
-                                                    required
                                                     autoFocus
                                                 />
                                             </Grid>
                                             <Grid item xs={12} sm={6}>
                                                 <TextField
+                                                    className={classes.text}
                                                     id='lastName'
                                                     label='Last Name'
                                                     value={values.lastName}
@@ -135,13 +146,14 @@ const Signup = () => {
                                         </Grid>
                                         <Grid item xs={12}>
                                             <TextField
-                                                id='email'
-                                                label='Email'
-                                                value={values.email}
+                                                className={classes.text}
+                                                id='name'
+                                                label='Name'
+                                                value={values.name}
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
-                                                helperText={touched.email ? errors.email : ""}
-                                                error={touched.email && Boolean(errors.email)}
+                                                helperText={touched.name ? errors.name : ""}
+                                                error={touched.name && Boolean(errors.name)}
                                                 margin="dense"
                                                 variant="outlined"
                                                 fullWidth
@@ -149,6 +161,7 @@ const Signup = () => {
                                         </Grid>
                                         <Grid item xs={12}>
                                             <TextField
+                                                className={classes.text}
                                                 id='password'
                                                 label='Password'
                                                 type="password"
@@ -164,9 +177,9 @@ const Signup = () => {
                                         </Grid>
                                         <Grid item xs={12}>
                                             <TextField
+                                                className={classes.text}
                                                 id='confirmPassword'
                                                 label='Confirm Password'
-                                                value={values.confirmPassword}
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
                                                 helperText={touched.confirmPassword ? errors.confirmPassword : ""}

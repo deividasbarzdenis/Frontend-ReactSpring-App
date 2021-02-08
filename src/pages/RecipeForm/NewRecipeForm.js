@@ -3,12 +3,22 @@ import * as yup from "yup";
 import {useHistory} from "react-router";
 import {addRecipe} from "../../api/recipesApi";
 import {Field, FieldArray, Form, Formik} from "formik"
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import PropsState from '../../components/PropsState'
+import LocalPizzaRoundedIcon from '@material-ui/icons/LocalPizzaRounded';
 import {Select} from "material-ui-formik-components/Select"
 
 
 const useStyles = makeStyles((theme) => ({
+    text: {
+        "MuiInputBase-input MuiOutlinedInput-input": {
+            borderBottom: "1px solid #fff",
+        },
+        "& .MuiInputBase-root MuiInput-root MuiInput-underline Mui-error Mui-error MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl": {
+            borderBottom: "1px solid #fff",
+        }
+    },
+    wrapper: {
+        marginBottom: '20px',
+    },
     paper: {
         marginTop: theme.spacing(8),
         display: 'flex',
@@ -97,12 +107,12 @@ const NewRecipeForm = () => {
                 } = props
                 return (
                     <>
-                        <PropsState {...props}/>
-                        <Container component="main" maxWidth="xs">
+                        {/*<PropsState {...props}/>*/}
+                        <Container component="main" maxWidth="xs" className={classes.wrapper}>
                             <CssBaseline/>
                             <div className={classes.paper}>
                                 <Avatar className={classes.avatar}>
-                                    <LockOutlinedIcon/>
+                                    <LocalPizzaRoundedIcon/>
                                 </Avatar>
                                 <Typography component="h1" variant="h5">
                                     New Recipe
@@ -116,6 +126,7 @@ const NewRecipeForm = () => {
                                 >
                                     <Grid item xs={12}>
                                         <TextField
+                                            className={classes.text}
                                             id='recipeDescription'
                                             label='Title'
                                             type="text"
@@ -129,6 +140,7 @@ const NewRecipeForm = () => {
                                     </Grid>
                                     <Grid item xs={6} sm={3}>
                                         <TextField
+                                            className={classes.text}
                                             id='prepTime'
                                             label='Preparation time'
                                             type="number"
@@ -143,6 +155,7 @@ const NewRecipeForm = () => {
                                     </Grid>
                                     <Grid item xs={6} sm={3}>
                                         <TextField
+                                            className={classes.text}
                                             id='cookTime'
                                             label='Cook time'
                                             type="number"
@@ -157,6 +170,7 @@ const NewRecipeForm = () => {
                                     </Grid>
                                     <Grid item xs={6} sm={3}>
                                         <TextField
+                                            className={classes.text}
                                             id='servings'
                                             label='Servings'
                                             type="number"
@@ -178,6 +192,7 @@ const NewRecipeForm = () => {
                                             name="difficulty"
                                             label="Difficulty"
                                             options={[
+                                                {value: 0, label: ""},
                                                 {value: 1, label: "Easy"},
                                                 {value: 2, label: "Medium"},
                                                 {value: 3, label: "Hard"},
@@ -187,6 +202,7 @@ const NewRecipeForm = () => {
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField
+                                            className={classes.text}
                                             id='source'
                                             label='Source'
                                             type="text"
@@ -200,6 +216,7 @@ const NewRecipeForm = () => {
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField
+                                            className={classes.text}
                                             id='url'
                                             label='url'
                                             type="text"
@@ -211,7 +228,7 @@ const NewRecipeForm = () => {
                                             fullWidth
                                         />
                                     </Grid>
-                                    <Grid item xs={12}>
+                                    <Grid item>
                                         <FieldArray
                                             name="categoryDto"
                                             render={arrayHelpers => (
@@ -219,34 +236,49 @@ const NewRecipeForm = () => {
                                                     {values.categoryDto && values.categoryDto.length > 0 ? (
                                                         values.categoryDto.map((category, index) => (
                                                             <div key={index}>
-                                                                <TextField
-                                                                    id='categoryDto'
-                                                                    label='Category'
-                                                                    type="text"
-                                                                    value={values.categoryDto[index]}
-                                                                    onChange={handleChange}
-                                                                    onBlur={handleBlur}
-                                                                    helperText={touched.category ? errors.category : ""}
-                                                                    error={touched.category && Boolean(errors.category)}
-                                                                    fullWidth
-                                                                    name={`categoryDto.${index}`}/>
-                                                                <Button
-                                                                    margin="normal"
-                                                                    type="button"
-                                                                    color="secondary"
-                                                                    variant="outlined"
-                                                                    onClick={() => arrayHelpers.remove(index)}
-                                                                >
-                                                                    -
-                                                                </Button>
-                                                                <Button
-                                                                    margin="normal"
-                                                                    type="button"
-                                                                    variant="outlined"
-                                                                    onClick={() => arrayHelpers.insert(index, '')}
-                                                                >
-                                                                    +
-                                                                </Button>
+                                                                <Grid container
+                                                                      spacing={2}
+                                                                      alignItems="center"
+                                                                      justify="center">
+                                                                    <Grid item xs={12} sm={6}>
+                                                                        <TextField
+                                                                            className={classes.text}
+                                                                            id='categoryDto'
+                                                                            label='Category'
+                                                                            type="text"
+                                                                            value={values.categoryDto[index]}
+                                                                            onChange={handleChange}
+                                                                            onBlur={handleBlur}
+                                                                            helperText={touched.category ? errors.category : ""}
+                                                                            error={touched.category && Boolean(errors.category)}
+                                                                            fullWidth
+                                                                            name={`categoryDto.${index}`}/>
+                                                                    </Grid>
+
+                                                                    <Grid item xs={6} sm={3}>
+                                                                        <Button
+                                                                            fullWidth
+                                                                            margin="normal"
+                                                                            type="button"
+                                                                            color="secondary"
+                                                                            variant="outlined"
+                                                                            onClick={() => arrayHelpers.remove(index)}
+                                                                        >
+                                                                            -
+                                                                        </Button>
+                                                                    </Grid>
+                                                                    <Grid item xs={6} sm={3}>
+                                                                        <Button
+                                                                            fullWidth
+                                                                            margin="normal"
+                                                                            type="button"
+                                                                            variant="outlined"
+                                                                            onClick={() => arrayHelpers.insert(index, '')}
+                                                                        >
+                                                                            +
+                                                                        </Button>
+                                                                    </Grid>
+                                                                </Grid>
                                                             </div>
                                                         ))
                                                     ) : (
@@ -266,6 +298,7 @@ const NewRecipeForm = () => {
                                     </Grid>
                                     <Grid item xs={12}>
                                         <TextField
+                                            className={classes.text}
                                             id='directions'
                                             label='directions'
                                             type='text'
@@ -285,100 +318,102 @@ const NewRecipeForm = () => {
                                         <FieldArray
                                             name="ingredientDTO"
                                             render={arrayHelpers => (
-                                                <div>
-                                                    <Grid container spacing={2}>
-                                                        {values.ingredientDTO.map((ingredient, index) => (
-                                                            <div key={index}>
-                                                                <Grid
-                                                                    container
-                                                                    spacing={2}
-                                                                    alignItems="center"
-                                                                    justify="center"
-                                                                >
-                                                                    <Grid item xs={12} sm={6}>
-                                                                        <TextField
-                                                                            id='ingredientDescription'
-                                                                            label='Ingredient description'
-                                                                            type='text'
-                                                                            value={values.ingredientDescription}
-                                                                            onChange={handleChange}
-                                                                            onBlur={handleBlur}
-                                                                            helperText={touched.ingredientDescription ? errors.ingredientDescription : ""}
-                                                                            error={touched.ingredientDescription && Boolean(errors.ingredientDescription)}
-                                                                            fullWidth
-                                                                            autoFocus
-                                                                            name={`ingredientDTO[${index}].ingredientDescription`}
-                                                                        />
-                                                                    </Grid>
-                                                                    <Grid item xs={2} sm={2}>
-                                                                        <TextField
-                                                                            id='amount'
-                                                                            label='Pcs'
-                                                                            type='number'
-                                                                            value={values.amount}
-                                                                            onChange={handleChange}
-                                                                            onBlur={handleBlur}
-                                                                            helperText={touched.amount ? errors.amount : ""}
-                                                                            error={touched.amount && Boolean(errors.amount)}
-                                                                            fullWidth
-                                                                            autoFocus
-                                                                            name={`ingredientDTO.${index}.amount`}
-                                                                        />
-                                                                    </Grid>
-                                                                    <Grid item xs={2} sm={2}>
-                                                                        <Field
-                                                                            fullWidth
-                                                                            onBlur={handleBlur}
-                                                                            autoFocus
-                                                                            error={touched.muDescription && Boolean(errors.muDescription)}
-                                                                            helperText={touched.muDescription ? errors.muDescription : ""}
-                                                                            name={`ingredientDTO[${index}].muDescription`}
-                                                                            label="M.O.U"
-                                                                            options={[
-                                                                                {value: 1, label: "l."},
-                                                                                {value: 2, label: "ml."},
-                                                                                {value: 3, label: "kg."},
-                                                                                {value: 4, label: "g."},
-                                                                                {value: 5, label: "spoon"},
-                                                                                {value: 6, label: "tea spoon"},
 
-                                                                            ]}
-                                                                            component={Select}
-                                                                            />
-                                                                    </Grid>
-                                                                    <Grid item xs={1} sm={1}>
-                                                                        <Button
-                                                                            fullWidth
-                                                                            margin="normal"
-                                                                            type="button"
-                                                                            color="secondary"
-                                                                            variant="outlined"
-                                                                            onClick={() => arrayHelpers.remove(index)}>
-                                                                            -
-                                                                        </Button>
-                                                                    </Grid>
-                                                                </Grid>
-                                                            </div>
-                                                        ))}
-                                                        <Grid item xs={12}>
-                                                            <Button
-                                                                fullWidth
-                                                                margin="normal"
-                                                                type="button"
-                                                                color="secondary"
-                                                                variant="outlined"
-                                                                onClick={() => arrayHelpers
-                                                                    .push({
-                                                                        ingredientDescription: '',
-                                                                        amount: 0,
-                                                                        muDescription: ''
-                                                                    })}
+                                                <Grid container
+                                                      spacing={1}>
+                                                    {values.ingredientDTO.map((ingredient, index) => (
+                                                        <div key={index}>
+                                                            <Grid
+                                                                container
+                                                                spacing={2}
+                                                                alignItems="center"
                                                             >
-                                                                Add
-                                                            </Button>
-                                                        </Grid>
+                                                                <Grid item xs={12} sm={6}>
+                                                                    <TextField
+                                                                        className={classes.text}
+                                                                        id='ingredientDescription'
+                                                                        label='Ingredient description'
+                                                                        type='text'
+                                                                        value={values.ingredientDescription}
+                                                                        onChange={handleChange}
+                                                                        onBlur={handleBlur}
+                                                                        helperText={touched.ingredientDescription ? errors.ingredientDescription : ""}
+                                                                        error={touched.ingredientDescription && Boolean(errors.ingredientDescription)}
+                                                                        fullWidth
+                                                                        autoFocus
+                                                                        name={`ingredientDTO[${index}].ingredientDescription`}
+                                                                    />
+                                                                </Grid>
+                                                                <Grid item sm={2}>
+                                                                    <TextField
+                                                                        className={classes.text}
+                                                                        id='amount'
+                                                                        label='Pcs'
+                                                                        type='number'
+                                                                        value={values.amount}
+                                                                        onChange={handleChange}
+                                                                        onBlur={handleBlur}
+                                                                        helperText={touched.amount ? errors.amount : ""}
+                                                                        error={touched.amount && Boolean(errors.amount)}
+                                                                        fullWidth
+                                                                        autoFocus
+                                                                        name={`ingredientDTO.${index}.amount`}
+                                                                    />
+                                                                </Grid>
+                                                                <Grid item xs={2} sm={2}>
+                                                                    <Field
+                                                                        fullWidth
+                                                                        onBlur={handleBlur}
+                                                                        autoFocus
+                                                                        error={touched.muDescription && Boolean(errors.muDescription)}
+                                                                        helperText={touched.muDescription ? errors.muDescription : ""}
+                                                                        name={`ingredientDTO[${index}].muDescription`}
+                                                                        label="M.O.U"
+                                                                        options={[
+                                                                            {value: 0, label: ""},
+                                                                            {value: 1, label: "l."},
+                                                                            {value: 2, label: "ml."},
+                                                                            {value: 3, label: "kg."},
+                                                                            {value: 4, label: "g."},
+                                                                            {value: 5, label: "spoon"},
+                                                                            {value: 6, label: "tea spoon"},
+
+                                                                        ]}
+                                                                        component={Select}
+                                                                    />
+                                                                </Grid>
+                                                                <Grid item xs={1} sm={1}>
+                                                                    <Button
+                                                                        fullWidth
+                                                                        margin="normal"
+                                                                        type="button"
+                                                                        color="secondary"
+                                                                        variant="outlined"
+                                                                        onClick={() => arrayHelpers.remove(index)}>
+                                                                        -
+                                                                    </Button>
+                                                                </Grid>
+                                                            </Grid>
+                                                        </div>
+                                                    ))}
+                                                    <Grid item xs={12} m={1}>
+                                                        <Button
+                                                            fullWidth
+                                                            margin="normal"
+                                                            type="button"
+                                                            color="secondary"
+                                                            variant="outlined"
+                                                            onClick={() => arrayHelpers
+                                                                .push({
+                                                                    ingredientDescription: '',
+                                                                    amount: 0,
+                                                                    muDescription: ''
+                                                                })}
+                                                        >
+                                                            Add
+                                                        </Button>
                                                     </Grid>
-                                                </div>
+                                                </Grid>
                                             )}
                                         />
                                     </Grid>
@@ -412,6 +447,7 @@ const NewRecipeForm = () => {
                                     </Grid>
                                 </Grid>
                             </Form>
+                            <CssBaseline/>
                         </Container>
                     </>
                 )

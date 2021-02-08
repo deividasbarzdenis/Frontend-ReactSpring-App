@@ -9,6 +9,7 @@ const initialState = {
 const userSlice = createSlice({
 	name: 'user',
 	initialState,
+	//pasirasome veiksmus ka norime daryti su slice, reducers ..po : gaunasi rename objekto
 	reducers: {
 		setUserData(state, { payload: user }) {
 			state.userData = user
@@ -22,7 +23,8 @@ const userSlice = createSlice({
 		removeJwt(state) {
 			state.jwt = null
 		}
-	}
+	},
+
 })
 
 export const saveUserToStorage = (store) => {

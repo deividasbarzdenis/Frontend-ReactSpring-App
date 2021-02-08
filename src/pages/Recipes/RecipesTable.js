@@ -1,10 +1,11 @@
 import {makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
+import useUser from "../../hooks/useUser";
 
 const useStyles = makeStyles((theme) => ({
     table: {
-        minWidth: 700,
+        minWidth: 500,
     },
     head: {
         fontWeight: "bold",
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 
 const RecipesTable = ({recipes, handleDeleteClick}) => {
     const classes = useStyles();
-
+    const user = useUser();
     return (
         <Container component="main">
             <TableContainer component={Paper}>
@@ -35,12 +36,12 @@ const RecipesTable = ({recipes, handleDeleteClick}) => {
                                     <TableCell align="center">{rec.id}</TableCell>
                                     <TableCell align="center">{rec.recipeDescription}</TableCell>
                                     <TableCell align="center">
-                                        <Button
+                                        {user?.roles.includes('ADMIN') && (<Button
                                             variant="outlined"
                                             color="secondary"
                                             size="small"
                                             onClick={() => handleDeleteClick(rec.id)}
-                                        >Delete</Button>
+                                        >Delete</Button>)}
                                     </TableCell >
                                 </TableRow>
                             ))

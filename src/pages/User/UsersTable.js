@@ -13,7 +13,7 @@ const UsersTable = ({users, handleDeleteClick, }) => {
                              <TableCell align="center">Id</TableCell>
                              <TableCell align="center">User name</TableCell>
                              <TableCell align="center">Last name</TableCell>
-                             <TableCell align="center">Email</TableCell>
+                             <TableCell align="center">Name</TableCell>
                              <TableCell align="center">Role</TableCell>
                              <TableCell align="center"/>
                          </TableRow>
@@ -24,9 +24,11 @@ const UsersTable = ({users, handleDeleteClick, }) => {
                                  <TableRow key={user.id}>
                                      <TableCell>{user.id}</TableCell>
                                      <TableCell><Link to={`/users/${user.id}`}>{user.username}</Link></TableCell>
-                                     <TableCell>{user.lastName}</TableCell>
-                                     <TableCell>{user.email}</TableCell>
-                                     <TableCell>{user.role}</TableCell>
+                                     <TableCell>{user.lastname}</TableCell>
+                                     <TableCell>{user.name}</TableCell>
+                                     <TableCell>{user.roles.map((role, index)=> (
+                                         {role}
+                                     ))}</TableCell>
                                      <TableCell>
                                          <Button
                                              variant="outlined"

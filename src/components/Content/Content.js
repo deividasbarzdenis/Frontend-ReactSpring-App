@@ -9,11 +9,11 @@ import About from "../../pages/About/About";
 import UserProfile from "../../pages/User/UserProfile";
 import NewRecipeForm from "../../pages/RecipeForm/NewRecipeForm";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Container from "@material-ui/core/Container";
 
 const Content = () => {
-
     return (
-        <main>
+        <Container component="main" >
             <Switch>
                 <Route exact path="/home">
                     <Home/>
@@ -49,7 +49,7 @@ const Content = () => {
                     <About/>
                 </Route>
             </Switch>
-        </main>
+        </Container>
     );
 }
 

@@ -9,23 +9,23 @@ main {
     flex: 1 0 auto;
 }
 
-.signup-form{
-    background: #222;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://unsplash.it/1200/800/?random');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-    background-fill-mode: rgba(0,0,0,0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-.signup{
-    background: white;
-    padding: 20px 25px;
-    width: 550px;
-    height: auto;
-    box-sizing: border-box;
-    position: relative;
-}
+/*.signup-form{*/
+/*    background: #222;*/
+/*    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://unsplash.it/1200/800/?random');*/
+/*    background-repeat: no-repeat;*/
+/*    background-size: cover;*/
+/*    background-position: center center;*/
+/*    background-fill-mode: rgba(0,0,0,0.5);*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    height: 100vh;*/
+/*}*/
+/*.signup{*/
+/*    background: white;*/
+/*    padding: 20px 25px;*/
+/*    width: 550px;*/
+/*    height: auto;*/
+/*    box-sizing: border-box;*/
+/*    position: relative;*/
+/*}*/
