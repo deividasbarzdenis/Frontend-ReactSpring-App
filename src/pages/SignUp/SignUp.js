@@ -42,7 +42,7 @@ const validationSchema = yup.object().shape({
         .min(3, "Too Short!")
         .max(20, "Too Long!")
         .required("The name is required"),
-    lastName: yup.string()
+    lastname: yup.string()
         .min(3, "Too Short!")
         .max(20, "Too Long!")
         .required("The last name is required"),
@@ -131,13 +131,13 @@ const Signup = () => {
                                             <Grid item xs={12} sm={6}>
                                                 <TextField
                                                     className={classes.text}
-                                                    id='lastName'
+                                                    id='lastname'
                                                     label='Last Name'
-                                                    value={values.lastName}
+                                                    value={values.lastname}
                                                     onChange={handleChange}
                                                     onBlur={handleBlur}
-                                                    helperText={touched.lastName ? errors.lastName : ""}
-                                                    error={touched.lastName && Boolean(errors.lastName)}
+                                                    helperText={touched.lastname ? errors.lastname : ""}
+                                                    error={touched.lastname && Boolean(errors.lastname)}
                                                     margin="dense"
                                                     variant="outlined"
                                                     fullWidth

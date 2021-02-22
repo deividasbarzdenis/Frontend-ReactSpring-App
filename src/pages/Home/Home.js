@@ -9,12 +9,11 @@ import {
     makeStyles,
     Typography
 } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import {useEffect, useState} from "react";
 import {fetchRecipes} from "../../api/recipesApi";
 import clsx from 'clsx';
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import cover from '../../assets/cover.jpg'
@@ -31,7 +30,6 @@ import a8 from "../../assets/img/8.jpg";
 import a9 from "../../assets/img/9.jpg";
 import a10 from "../../assets/img/10.jpg";
 import a11 from "../../assets/img/11.jpg";
-
 
 const primary = grey[700];
 
@@ -124,12 +122,16 @@ const Home = () => {
                                     title="Image title"
                                 />
                                 <CardContent className={classes.cardContent}>
-                                    <NavLink to={`/recipe/${recipe.id}`} component={Button} size="small"
-                                             color={primary} align="center">
+                                    <Link
+                                        to={`/recipe/${recipe.id}`}
+                                        //component={Button}
+                                        size="small"
+                                        color={primary}
+                                        align="center">
                                         <Typography gutterBottom variant="h5" component="h2">
                                             {recipe.recipeDescription}
                                         </Typography>
-                                    </NavLink>
+                                    </Link>
                                 </CardContent>
                                 <IconButton
                                     className={clsx(classes.expand, {

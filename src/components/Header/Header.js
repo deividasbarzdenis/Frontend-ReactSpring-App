@@ -33,6 +33,7 @@ const Header = () => {
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                     <li><NavLink to="/recipe/form">Add Recipe</NavLink></li>
                     <li><NavLink to="/recipes">Recipes</NavLink></li>
+                    <li><NavLink to="/users">Users</NavLink></li>
                     <li><NavLink to="/about">About</NavLink></li>
                     {
                         !!user ? (//!! pavercia i boolean javascript
