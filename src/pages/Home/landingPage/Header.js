@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
         },
 
     },
-    btColor:{
+    btColor: {
         fontFamily: 'Nunito',
         color: "#5AFF3D",
         fontSize: '0.95rem',
@@ -108,9 +108,14 @@ const useStyles = makeStyles((theme) => ({
 
         },
         '&:focus': {
-            color: '#795548',
             backgroundColor: 'rgba(215, 138, 248,  0.75)',
         },
+    },
+    dropMenu: {
+        color: "#795548",
+    },
+    dropMenuText: {
+        color: "#795548",
     }
 }))
 
@@ -173,8 +178,9 @@ const Header1 = () => {
                                 {menuItems.map(item => {
                                     const {title, pageUrl} = item;
                                     return (
-                                        <MenuItem>
+                                        <MenuItem className={classes.dropMenu}>
                                             <NavLink
+                                                className={classes.dropMenuText}
                                                 to={pageUrl}
                                                 onClick={() => handleMenuClick()}>
                                                 {title}</NavLink>
@@ -184,17 +190,23 @@ const Header1 = () => {
                                 {
                                     !!user ? (//!! pavercia i boolean javascript
                                         <>
-                                            <MenuItem><NavLink
-                                                to="/home"
-                                                component={Button}
-                                                onClick={logout}>
-                                                Logout</NavLink>
+                                            <MenuItem className={classes.dropMenu}>
+                                                <NavLink
+                                                    className={classes.dropMenuText}
+                                                    to="/home"
+                                                    component={Button}
+                                                    onClick={logout}>
+                                                    Logout</NavLink>
                                             </MenuItem>
                                         </>
                                     ) : (
                                         <>
-                                            <MenuItem><NavLink to="/login">Login</NavLink></MenuItem>
-                                            <MenuItem><NavLink to="/signup">Sign Up</NavLink></MenuItem>
+                                            <MenuItem className={classes.dropMenu}>
+                                                <NavLink to="/login" className={classes.dropMenuText}>Login</NavLink>
+                                            </MenuItem>
+                                            <MenuItem className={classes.dropMenu}>
+                                                <NavLink to="/signup" className={classes.dropMenuText}>Sign Up</NavLink>
+                                            </MenuItem>
                                         </>
                                     )
                                 }
@@ -229,8 +241,10 @@ const Header1 = () => {
                                         </>
                                     ) : (
                                         <>
-                                            <Button to="/login" className={classes.btColor} component={NavLink}>Login</Button>
-                                            <Button to="/signup" className={classes.btColor} component={NavLink}>Sign Up</Button>
+                                            <Button to="/login" className={classes.btColor}
+                                                    component={NavLink}>Login</Button>
+                                            <Button to="/signup" className={classes.btColor} component={NavLink}>Sign
+                                                Up</Button>
                                         </>
                                     )
                                 }
