@@ -46,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
         //textAlign: 'center',
         height: '100vh',
         fontFamily: 'Nunito',
+
     },
     appBar: {
         background: 'none',
@@ -72,7 +73,12 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             backgroundColor: 'rgba(215, 138, 248,  0.75)',
             color: '#795548',
-        }
+        },
+        '&:focus': {
+            color: '#795548',
+            backgroundColor: 'rgba(215, 138, 248,  0.75)',
+        },
+
     },
     btColor:{
         fontFamily: 'Nunito',
@@ -97,8 +103,13 @@ const useStyles = makeStyles((theme) => ({
     },
     goDownCon: {
         '&:hover': {
-            backgroundColor: 'rgba(215, 138, 248,  0.75)',
             color: '#795548',
+            backgroundColor: 'rgba(215, 138, 248,  0.75)',
+
+        },
+        '&:focus': {
+            color: '#795548',
+            backgroundColor: 'rgba(215, 138, 248,  0.75)',
         },
     }
 }))
