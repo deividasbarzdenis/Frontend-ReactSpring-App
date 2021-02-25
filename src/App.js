@@ -2,9 +2,9 @@ import {BrowserRouter as Router} from "react-router-dom";
 import {Provider} from "react-redux";
 import store from './store'
 import {CssBaseline, makeStyles} from "@material-ui/core";
-import Header1 from "./pages/Home/landingPage/Header";
+import Header1 from "./components/Header/Header";
 import cover from './assets/cover.jpg'
-import PlaceForRecipes from "./pages/Home/landingPage/PlaceForRecipes";
+import Content from "./components/Content/Content";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,9 +24,7 @@ function App() {
             <Provider store={store}>
                 <Router>
                     <Header1/>
-                    <PlaceForRecipes/>
-                    {/*<Header/>*/}
-                    {/*<Content/>*/}
+                    <Content/>
                     {/*<Footer/>*/}
                 </Router>
             </Provider>
